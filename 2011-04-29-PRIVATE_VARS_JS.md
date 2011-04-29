@@ -76,6 +76,8 @@ Si dans le constructeur de Man() j'ajoute simplement ceci : `Human.call(this);` 
 Et `bill` s'appellera bien "Bill", et `bob` s'appellera bien "Bob" ...
 ... et je me coucherai mois c.. ce soir ;)
 
+Et j'aime javascript de + en +
+
 ##Au final mon code ressemblera à ceci :
 
     function Human() {

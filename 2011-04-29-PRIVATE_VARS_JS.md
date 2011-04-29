@@ -92,7 +92,9 @@ Et `bill` s'appellera bien "Bill", et `bob` s'appellera bien "Bob" ...
 	  	this.getNickName = function() { return nickName; }
 	  	this.setNickName = function( value ) { nickName = value; }
 
-	  	this.toString = function() { return "Hello i am " + this.getName() + " aka " + nickName ;}
+	  	this.toString = function() { 
+                    return "Hello i am " + this.getName() + " aka " + nickName ;
+                }
 	}
 	Man.prototype = new Human();
 

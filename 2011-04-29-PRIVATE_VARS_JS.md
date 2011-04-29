@@ -10,11 +10,11 @@ Il y a quelques temps je me suis creusé la tête sur le fonctionnement des vari
 
 * j'ai une fonction `Human()`
 
-	function Human() {
-		var name = "John Doe";
-		this.getName = function(){ return name; }
-		this.setName = function( value ){ name = value; }
-	}
+	    function Human() {
+	    	var name = "John Doe";
+	    	this.getName = function(){ return name; }
+	    	this.setName = function( value ){ name = value; }
+	    }
 
 * j'ai une fonction `Man()`
 

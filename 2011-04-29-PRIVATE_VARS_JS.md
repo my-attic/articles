@@ -71,7 +71,8 @@ Et là l'**illumination !!!** , une simple ligne de code dans son exemple a allu
 
 Si dans le constructeur de Man() j'ajoute simplement ceci : `Human.call(this);` eh ben ça fonctionne ! Et c'est bien sûr, et je m'en veux de ne pas y avoir pensé.
 
-Et `bill` s'appellera bien "Bill", et `bob` s'appellera bien "Bob"
+Et `bill` s'appellera bien "Bill", et `bob` s'appellera bien "Bob" ...
+... et je me coucherai mois c.. ce soir ;)
 
 ##Au final mon code ressemblera à ceci :
 

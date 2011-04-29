@@ -78,29 +78,29 @@ Et `bill` s'appellera bien "Bill", et `bob` s'appellera bien "Bob" ...
 
 ##Au final mon code ressemblera à ceci :
 
-	function Human() {
-	    var name = "John Doe";
-	    this.getName = function(){ return name; }
-	    this.setName = function( value ){ name = value; }
-	}
+    function Human() {
+        var name = "John Doe";
+        this.getName = function(){ return name; }
+        this.setName = function( value ){ name = value; }
+    }
 
-        function Man() {
-            //the SOLUTION is here
-            Human.call(this);
+    function Man() {
+        //the SOLUTION is here
+        Human.call(this);
 
-            var nickName = "Johnny";
-            this.getNickName = function() { return nickName; }
-            this.setNickName = function( value ) { nickName = value; }
+        var nickName = "Johnny";
+        this.getNickName = function() { return nickName; }
+        this.setNickName = function( value ) { nickName = value; }
 
-            this.toString = function() { 
-                return "Hello i am " + this.getName() + " aka " + nickName ;
-            }
+        this.toString = function() { 
+            return "Hello i am " + this.getName() + " aka " + nickName ;
         }
-	Man.prototype = new Human();
+    }
+    Man.prototype = new Human();
 
-	var bob = new Man(); bob.setName( "Bob" ); bob.setNickName( "Bobby" );
-	var bill = new Man(); bill.setName( "Bill" ); bill.setNickName( "Billy" );
+    var bob = new Man(); bob.setName( "Bob" ); bob.setNickName( "Bobby" );
+    var bill = new Man(); bill.setName( "Bill" ); bill.setNickName( "Billy" );
 
-	console.log( bob.toString() );
-	console.log( bill.toString() );
+    console.log( bob.toString() );
+    console.log( bill.toString() );
 

@@ -22,8 +22,8 @@ Il y a quelques temps je me suis creusé la tête sur le fonctionnement des vari
 	    	var nickName = "Johnny";
 	    	this.getNickName = function() { return nickName; }
 	    	this.setNickName = function( value ) { nickName = value; }
-        
-	    	    this.toString = function() { 
+
+                this.toString = function() { 
                     return "Hello i am " + this.getName() + " aka " + nickName ;
                 }
 	    }

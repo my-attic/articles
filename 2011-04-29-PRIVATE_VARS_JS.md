@@ -19,7 +19,7 @@ Il y a quelques temps je me suis creusé la tête sur le fonctionnement des vari
 ```
 
 * j'ai une fonction `Man()`
-
+``` js
         function Man() {
             var nickName = "Johnny";
             this.getNickName = function() { return nickName; }
@@ -29,7 +29,7 @@ Il y a quelques temps je me suis creusé la tête sur le fonctionnement des vari
                 return "Hello i am " + this.getName() + " aka " + nickName ;
             }
         }
-
+```
 * `Man` hérite de `Human`
 
 	    Man.prototype = new Human();

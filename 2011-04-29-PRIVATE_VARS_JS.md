@@ -19,6 +19,7 @@ Il y a quelques temps je me suis creusé la tête sur le fonctionnement des vari
 ```
 
 * j'ai une fonction `Man()`
+
 ``` js
         function Man() {
             var nickName = "Johnny";
@@ -30,26 +31,35 @@ Il y a quelques temps je me suis creusé la tête sur le fonctionnement des vari
             }
         }
 ```
+
 * `Man` hérite de `Human`
 
+``` js
 	    Man.prototype = new Human();
+```
 
 * j'instancie `Man` pour avoir `bob`
 
+``` js
 	    var bob = new Man(); 
 	    bob.setName( "Bob" ); 
 	    bob.setNickName( "Bobby" );
+```
 
 * j'instancie `Man` pour avoir `bill`
 
+``` js
 	    var bill = new Man(); 
 	    bill.setName( "Bill" ); 
 	    bill.setNickName( "Billy" );
+```
 
 * j'affiche les informations
 
+``` js
 	    console.log( bob.toString() );
 	    console.log( bill.toString() );
+```
 
 * je lance ça et vais faire un tour dans ma console
 
@@ -82,6 +92,7 @@ Et j'aime javascript de + en +
 
 ##Au final mon code ressemblera à ceci :
 
+``` js
     function Human() {
         var name = "John Doe";
         this.getName = function(){ return name; }
@@ -107,4 +118,4 @@ Et j'aime javascript de + en +
 
     console.log( bob.toString() );
     console.log( bill.toString() );
-
+```

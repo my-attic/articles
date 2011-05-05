@@ -9,6 +9,7 @@ Il y a quelques temps je me suis creusé la tête sur le fonctionnement des vari
 
 
 * j'ai une fonction `Human()`
+
 ~~~js
 	    function Human() {
 	    	var name = "John Doe";
@@ -16,6 +17,7 @@ Il y a quelques temps je me suis creusé la tête sur le fonctionnement des vari
 	    	this.setName = function( value ){ name = value; }
 	    }
 ~~~
+
 * j'ai une fonction `Man()`
 
         function Man() {

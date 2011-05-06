@@ -6,8 +6,6 @@
 
 Il y a quelques temps je me suis creusé la tête sur le fonctionnement des variables privées avec des classes (pardon fonctions) filles en javascript. Je m'explique :
 
-
-
 * j'ai une fonction `Human()`
 
 ``` js
@@ -70,7 +68,7 @@ J'obtiens ceci :
 	Hello i am Bill aka Bobby
 	Hello i am Bill aka Billy
 
-**AAARGHHHHH !!!** bill et bob ont le même nom !!! Oh p.....! Il doit y avoir quelques code js dans la nature qui fonctionnent bizarement ...
+**AAARGHHHHH !!!** bill et bob ont le même nom !!! Oh p.....! Il doit y avoir quelques codes js dans la nature qui fonctionnent bizarement ...
 
 - Je suis arrivé à trouver des moyens de contournement, mais rien de très "joli"
 - J'ai demandé autour de moi, on m'a expliqué qu'en js, il ne fallait pas à tout prix vouloir mimer le fonctionnement objet de Java ou que je pouvais fonctionner par convention et prefixer mes variables privées par un `_`

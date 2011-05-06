@@ -10,12 +10,12 @@ juste un petit exemple :
 	<html>
 		<head>
 		<script 
-			src="http://traceur-compiler.googlecode.com/svn/branches/v0.10/src/traceur.js" 
-			type="text/javascript">
+		  src="http://traceur-compiler.googlecode.com/svn/branches/v0.10/src/traceur.js" 
+		  type="text/javascript">
 		</script>
 		<script 
-			src="http://traceur-compiler.googlecode.com/svn/branches/v0.10/src/bootstrap.js" 
-			type="text/javascript">
+		  src="http://traceur-compiler.googlecode.com/svn/branches/v0.10/src/bootstrap.js" 
+		  type="text/javascript">
 		</script>		
 		</head>
 		<body>
@@ -35,9 +35,9 @@ juste un petit exemple :
 					hello(where) {
 						let element = document.querySelector('#' + where);
 						element.innerHTML = 
-                                                    this.message + "-" + 
-                                                    this.firstName + " " + 
-                                                    this.lastName;
+                                                 this.message + "-" + 
+                                                 this.firstName + " " + 
+                                                 this.lastName;
 					}
 				};
 				

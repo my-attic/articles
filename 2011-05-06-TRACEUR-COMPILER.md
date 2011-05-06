@@ -23,6 +23,7 @@ juste un petit exemple :
 	        <h1 id="man-message"></h1>
 
 			<script type="text/traceur">
+~~~ js
 				class Human {
 	                var firstName = 'John', lastName = 'Doe';
 					new(params, message) {
@@ -59,6 +60,7 @@ juste un petit exemple :
             
 	            bob.hello('man-message');
 	            console.log(bob.what);
+~~~
 			</script>
 		</body>
 	</html>

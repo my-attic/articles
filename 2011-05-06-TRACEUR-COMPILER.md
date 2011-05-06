@@ -6,7 +6,7 @@ Lors de la JSConf 2011 a été présenté un nouveau projet [Traceur-Compiler](h
 Et parmi ces "propositions", une d'entre elles me "parle" beaucoup : `class`
 
 juste un petit exemple :
-
+~~~ js
 	<html>
 		<head>
 			<script 
@@ -23,7 +23,7 @@ juste un petit exemple :
 	        <h1 id="man-message"></h1>
 
 			<script type="text/traceur">
-~~~ js
+
 				class Human {
 	                var firstName = 'John', lastName = 'Doe';
 					new(params, message) {
@@ -60,10 +60,11 @@ juste un petit exemple :
             
 	            bob.hello('man-message');
 	            console.log(bob.what);
-~~~
+
 			</script>
 		</body>
 	</html>
+~~~
 
 **Remarque :** le mot var déclare une variable publique
 

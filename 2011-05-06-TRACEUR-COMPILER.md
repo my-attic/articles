@@ -7,17 +7,16 @@ Et parmi ces "propositions", une d'entre elles me "parle" beaucoup : `class`
 
 juste un petit exemple :
 
-~~~ js
 	<html>
 		<head>
-			<script 
-				src="http://traceur-compiler.googlecode.com/svn/branches/v0.10/src/traceur.js" 
-				type="text/javascript">
-			</script>
-			<script 
-				src="http://traceur-compiler.googlecode.com/svn/branches/v0.10/src/bootstrap.js" 
-				type="text/javascript">
-			</script>		
+		<script 
+			src="http://traceur-compiler.googlecode.com/svn/branches/v0.10/src/traceur.js" 
+			type="text/javascript">
+		</script>
+		<script 
+			src="http://traceur-compiler.googlecode.com/svn/branches/v0.10/src/bootstrap.js" 
+			type="text/javascript">
+		</script>		
 		</head>
 		<body>
 			<h1 id="human-message"></h1>
@@ -35,7 +34,10 @@ juste un petit exemple :
 
 					hello(where) {
 						let element = document.querySelector('#' + where);
-						element.innerHTML = this.message + "-" + this.firstName + " " + this.lastName;
+						element.innerHTML = 
+                                                    this.message + "-" + 
+                                                    this.firstName + " " + 
+                                                    this.lastName;
 					}
 				};
 				
@@ -65,7 +67,6 @@ juste un petit exemple :
 			</script>
 		</body>
 	</html>
-~~~
 
 **Remarque :** le mot var déclare une variable publique
 

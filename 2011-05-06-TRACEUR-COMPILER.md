@@ -11,11 +11,13 @@ juste un petit exemple :
 	<html>
 		<head>
 		<script 
-		  src="http://traceur-compiler.googlecode.com/svn/branches/v0.10/src/traceur.js" 
+		  src="http://traceur-compiler.googlecode.com/
+                       svn/branches/v0.10/src/traceur.js" 
 		  type="text/javascript">
 		</script>
 		<script 
-		  src="http://traceur-compiler.googlecode.com/svn/branches/v0.10/src/bootstrap.js" 
+		  src="http://traceur-compiler.googlecode.com/
+                       svn/branches/v0.10/src/bootstrap.js" 
 		  type="text/javascript">
 		</script>		
 		</head>

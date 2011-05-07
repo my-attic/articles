@@ -7,7 +7,7 @@ Et parmi ces "propositions", une d'entre elles me "parle" beaucoup : `class`
 
 juste un petit exemple :
 
-```js
+``` html
 	<html>
 		<head>
 		<script 

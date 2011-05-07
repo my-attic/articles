@@ -7,7 +7,7 @@ Et parmi ces "propositions", une d'entre elles me "parle" beaucoup : `class`
 
 juste un petit exemple :
 
-~~~html
+```html
 	<html>
 		<head>
 		<script 
@@ -70,7 +70,7 @@ juste un petit exemple :
 			</script>
 		</body>
 	</html>
-~~~
+```
 
 **Remarque :** le mot var déclare une variable publique
 

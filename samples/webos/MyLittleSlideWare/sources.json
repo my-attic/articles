@@ -1,0 +1,15 @@
+[
+    {"source": "app/assistants/stage-assistant.js"},
+    {
+        "scenes": "slide1",
+        "source": "app/assistants/slide1-assistant.js"
+    },
+    {
+        "scenes": "slide2",
+        "source": "app/assistants/slide2-assistant.js"
+    },
+    {
+        "scenes": "slide3",
+        "source": "app/assistants/slide3-assistant.js"
+    }
+]

@@ -2,7 +2,7 @@
 
 Safari (mobile) on iOS5 will support native position:fixed and overflow:scroll. It's a great news for mobile webapps developers.
 
-we'll see how to make a split-view "easily
+we'll see how to make a split-view "easily" with position:fixed and overflow:scroll
 (not necessarily the best solution but if you know a better way you can edit this article and fork on github : [https://github.com/k33g/articles](https://github.com/k33g/articles)).
 
 ##First, create some styles :

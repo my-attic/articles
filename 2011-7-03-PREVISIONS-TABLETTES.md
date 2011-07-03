@@ -24,7 +24,7 @@ Le modèle de développement tourne autour des technos web, HP a pondu le framew
 - il y a tout ce qu'il faut, pas besoin de ré-inventer la roue
 - c'est facile à utiliser
 - c'est compatible avec les codes js existants (si vous avez envie de faire du jQuery, Zepto, ..., pas de problème)
-- inclusion dans la tablette de **node.js** (le serveur d'application qui fait du buzz depuis plusieurs mois)
+- inclusion dans la tablette de **Node.js** (le serveur d'application qui fait du buzz depuis plusieurs mois)
 
 ##Les prévisions de madame Soleil : (sur le marché de la tablette)
 
@@ -32,11 +32,13 @@ Le modèle de développement tourne autour des technos web, HP a pondu le framew
 - pas impossible que Apple nous en sorte un (avec Dashboard, ils ne sont pas loin d'avoir quelque chose)
 - la HP Touch aura probablement plus de succès en entreprise qu'à la maison : un modèle de développement productif, mais pas autant d'applications que l'iPad, un mode de déploiement simplifié et sans les contrainte du store (mais le store existe aussi) (les PalmPre du coup pourraient eux aussi percer en entreprise)
 - **les 2 acteurs "tablettes" 2012 seront Apple et HP**
-- Google va complètement revoir le modèle Android (un peu comme Microsoft avec Windows 8) et va proposer un système se rapprochant de Gnome 3 (scriptable en js), intégrant node.js ou quelque chose de comparable (avec des API vers Google+), une ihm ressemblant à celle de Google+ (comme la version web, c'est déjà le cas avec la version application pour Android) pour essayer de récupérer son loupé côté tablette.
+- Google va complètement revoir le modèle Android (un peu comme Microsoft avec Windows 8) et va proposer un système se rapprochant de Gnome 3 (scriptable en js), intégrant **Node.js** ou quelque chose de comparable (avec des API vers Google+), une ihm ressemblant à celle de Google+ (comme la version web, c'est déjà le cas avec la version application pour Android) pour essayer de récupérer son loupé côté tablette.
 - Google va refondre complètement son navigateur Web Mobile (sérieusement, il serait temps, c'est un peu spartiate)
-- Microsoft va alléger le modèle de développement WindowsPhone, **exit Silverlight et XAML**, retour du mode "winforms" avec une webview optimisée pour faire des applications hybrides, IE Mobile devrait prendre un sacré coup de jeune pour se mettre au même niveau que WebKit, tablette à prévoir, node.js ne devrait pas être loin non plus
+- Microsoft va alléger le modèle de développement WindowsPhone, **exit Silverlight et XAML**, retour du mode "winforms" avec une webview optimisée pour faire des applications hybrides, IE Mobile devrait prendre un sacré coup de jeune pour se mettre au même niveau que WebKit, tablette à prévoir, **Node.js** ne devrait pas être loin non plus
 
 **on verra en 2012 à quel point je me suis planté ;)**
+
+**Bilan des courses :** amis geeks développeurs, profitez des vacances pour réviser votre **javascript**, apprenez ce qu'est réellement le **DOM**, yeutez **HTML5**, **CSS3** ce n'est pas que pour les graphistes, et enfin prenez le temps d'installer **Node.js**.
 
 ##Parts de marché des tablettes 1er semestre 2012
 

@@ -31,7 +31,7 @@ Le modèle de développement tourne autour des technos web, HP a pondu le framew
 - Google va refondre complètement son navigateur Web Mobile (sérieusement, il serait temps, c'est un peu spartiate)
 - Microsoft va alléger le modèle de développement WindowsPhone, **exit Silverlight et XAML**, retour du mode "winforms" avec une webview optimisée pour faire des applications hybrides, IE Mobile devrait prendre un sacré coup de jeune pour se mettre au même niveau que WebKit, tablette à prévoir, node.js ne devrait pas être loin non plus
 
-**on verra en 2011 à quel point je me suis planté ;)**
+**on verra en 2012 à quel point je me suis planté ;)**
 
 ##Parts de marché des tablettes 1er semestre 2012
 

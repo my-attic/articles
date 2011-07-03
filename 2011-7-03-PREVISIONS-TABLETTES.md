@@ -8,8 +8,10 @@ En ce moment cela bouge beaucoup autour des tablettes (iPad 2, HP TouchPad, ...)
 **iPad :**
 l'arrivée de iOS5 en septembre va changer quelques habitudes : les évolutions de Safari Mobile permettent de faire des WebApps très facilement. Apple à la dernière WWDC, pousse les développeurs à faire des webapps ou des applications hybrides. Playboy, le Times, ... changent leur modèle de diffusion : sortie des stores, pour diffusion vers le web
 
-**Tablette BlackBerry :** Plouf ! Paf, la tablette. 
-(Lisez ça : [http://www.lefigaro.fr/hightech/2011/07/01/01007-20110701ARTFIG00586-remous-en-interne-autour-des-rates-des-blackberry.php](http://www.lefigaro.fr/hightech/2011/07/01/01007-20110701ARTFIG00586-remous-en-interne-autour-des-rates-des-blackberry.php))
+**Tablette BlackBerry :** 
+Plouf ! Paf, la tablette. 
+Lisez ça :
+[http://www.lefigaro.fr/hightech/2011/07/01/01007-20110701ARTFIG00586-remous-en-interne-autour-des-rates-des-blackberry.php](Remous en interne autour des tablettes BlackBerry)
 
 **HP TouchPad :** sortie hier en France (demain, je suis à la Fnac, je crois que je vais craquer).
 Beaucoup de Buzz, on va voir ce qu'en pensent les utilisateurs, les développeurs sont ravis semble-t-il.

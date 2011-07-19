@@ -40,13 +40,10 @@
 
     var ClientsCollection = Backbone.Collection.extend({
         model : Client,
-        initialize : function(view) {
+        initialize : function() {
             console.log("initialize clients collection");
 
-            this.bind("add", function(model){
-                console.log("Add", model.get('id'), model);
-                view.addClientToList(model);
-            });
+            this.bind("add", function(model){ console.log("Add", model.get('id'), model); });
 
             this.bind("remove", function(el){ console.log("Remove", el.get('id'), el); });
         }
@@ -56,17 +53,21 @@
     var ClientView = Backbone.View.extend({
         el : $("#divClient"), /* Utilisation de zepto pour lier ClientView au DOM */
         initialize : function() {
+            var that = this;
             /*
                 - Création d'une collection de clients à l'initialisation de la vue.
                 - On passe la vue en référence à la collection pour créer une connexion entre les 2
             */
-            this.listeClients = new ClientsCollection(this);
+            this.listeClients = new ClientsCollection();
+            this.listeClients.bind("add", function(model){
+                that.addClientToList(model);
+            });
         },
         /*---  Définition des évènements associés à la vue ---*/
         events : {
             /*
                 lorsque le onclick() de <button id="cmdAddClient">Ajouter Client</button>
-                est déclencher alors appeler cmdAddClient_Click()
+                est déclenché alors appeler cmdAddClient_Click()
             */
             'click #cmdAddClient' : 'cmdAddClient_Click'
         },
@@ -83,7 +84,7 @@
             /* ajout du nouveau client à la collection */
             this.listeClients.add(tmpClient);
         },
-        /*---  addClientToList est appelée par la collection à chaque nouveau client inséré ---*/
+        /*---  addClientToList est appelée à chaque nouveau client inséré ---*/
         addClientToList : function(model) {
             /* utilisation de zepto pour ajouter un élément à la liste */
             $("#listeClient").append("<li>" + model.get('id') + " : " + model.get('nom') + "</li>");

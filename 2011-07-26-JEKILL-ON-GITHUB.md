@@ -17,7 +17,7 @@
 - et vous allez créer l'arborescence suivante et les fichiers vides pour chacun des directories :
 
 
-
+~~~
     .
     |-- _config.yml
     |-- _layouts
@@ -30,7 +30,7 @@
     |-- css
     |-- images
     `-- index.html
-
+~~~
 
 
 ##Construction du site
@@ -63,7 +63,7 @@ Ce répertoire contient les templates de votre site, `default.html`, c'est le te
 
 ####contenu de default.html
 
-    {% highlight html %}
+~~~ html
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
     <head>
@@ -95,7 +95,7 @@ Ce répertoire contient les templates de votre site, `default.html`, c'est le te
         </div>
     </body>
     </html>
-    {% endhighlight %}
+~~~
 
 **Remarque :** rappelez vous que vous n'êtes pas Bob ...
 
@@ -103,7 +103,7 @@ Ce répertoire contient les templates de votre site, `default.html`, c'est le te
 
 Dans ce template, on explique que l'on utilise pour le détail d'un article, le template par défaut (`layout: default)`, on affiche le contenu avec la balise suivante : `{{ content }}`, et en dessous, on affiche les liens des 3 derniers posts.
 
-    {% highlight html %}
+~~~ html
     ---
     layout: default
     ---
@@ -119,7 +119,7 @@ Dans ce template, on explique que l'on utilise pour le détail d'un article, le 
             {% endfor %}
         </ul>
     </div>
-    {% endhighlight %}
+~~~
 
 ###A la racine du site ...index.html
 
@@ -127,7 +127,7 @@ Dans ce template, on explique que l'on utilise pour le détail d'un article, le 
 
 On se contente d'afficher la liste des "billets/articles" du blog
 
-    {% highlight html %}
+~~~ html
     ---
     layout: default
     title: Who is this Bob ?
@@ -145,7 +145,7 @@ On se contente d'afficher la liste des "billets/articles" du blog
             </ul>
         </div>
     </div>
-    {% endhighlight %}
+~~~
 
 le "draft" de votre blog est terminé, reste à saisir des articles.
 

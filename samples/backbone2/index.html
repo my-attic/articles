@@ -1,321 +1,12 @@
-#Backbone.js ... la suite
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Backbone</title>
+    <script src="zepto.min.js"></script>
+    <script src="underscore-min.js"></script>
+    <script src="backbone-min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-##Introduction
-
-Nous avions eu la dernière fois [une petite intro à Backbone](https://github.com/k33g/articles/blob/master/2011-07-19-BACKBONE.md). Par contre la façon de coder n'a pas forcément était faite dans les règles de l'art, pour partie à dessein (aspect didactique : pas la peine de vous pourrir avec certaines bonnes pratiques qui peuvent rendre le code obscur à un débutant) et pour le reste, ... faut bien apprendre ;)
-
-Aujourd'hui, j'ajoute donc ces bonnes pratiques, plus celles issues de l'aimable relecture de [@mklabs](http://twitter.com/mklabs/). (je vais même repomper complètement certaines de ses phrases).
-
-##C'est parti !
-
-###HTML
-
-Nous allons modifier tout d'abord le code HTML, pour être un peu plus pro. Donc, nous avions anciennement ceci :
-
-~~~ html
-
-    <a href="#showAbout" id="lnkAbout">about</a>
-    <div id="divClient">
-        Identifiant : <input type="text" id="txtIdClient" placeholder="identifiant du client">
-        &nbsp; Client : <input type="text" id="txtNomClient" placeholder="nom du client">
-        &nbsp; Remarque : <input type="text" id="txtRemarqueClient" placeholder="remarque sur le client" size="50">
-        &nbsp; <button id="cmdAddClient">Ajouter Client</button>
-        <br>
-        <ul id="listeClient"></ul>
-    </div>
-
-    <div id="divAbout">Ceci est un tuto sur BackBone</div>
-~~~
-
-Que nous allons transformer en ceci :
-
-~~~ html
-
-    <div id="container">
-        <a href="#showAbout" id="lnkAbout">about</a>
-        <form action="/">
-            <p>
-                <label for="identifiant">Identifiant</label>
-                <input type="text" id="identifiant" class="identifiant" name="identifiant" placeholder="Identifiant du client" />
-            </p>
-            <p>
-                <label for="nom">Nom</label>
-                <input type="text" id="nom" class="nom" name="nom" placeholder="Nom du client" />
-            </p>
-
-            <p>
-                <label for="remarque">Remarque</label>
-                <input type="text" id="remarque" class="remarque" name="identifiant" placeholder="Remarque sur le client" />
-            </p>
-
-            <input type="submit" class="submit" value="Ajouter Client" />
-        </form>
-        <ul class="list"></ul>
-        <div class="about">Ceci est un tuto sur BackBone</div>
-    </div>
-~~~
-
-- l'ensemble des composants de la vue html est contenu dans un div ("container")
-- on essaye d'utiliser le moins possible les id (là c'est un long débat, au début faites comme vous le sentez, ensuite une fois que vous êtes à l'aise avec les sélecteurs, rendez votre code plus élégant), donc plutôt utiliser les attributs `name` & `class`
-- on ajoute un `<form>` pour contenir nos zones de saisie, cela permettra de récupérer l'action du `<form>`
-
-
-###Global
-
-Comme dit [@mklabs](http://twitter.com/mklabs/), *"faut éviter la fête du Global"*. Et il n'a pas complètement tort, de tout temps, la variable publique, c'est pas propre!
-
-Pour cela il faut inclure notre code applicatif dans une closure :
-
-~~~ javascript
-
-    (function($, exports){
-        //ici notre code applicatif
-    })(this.Zepto, this);
-~~~
-
-*bien sur, si on utilise jQuery, nous aurons this.jQuery en lieu et place de this.Zepto*
-
-###OnLoad
-
-On doit lancer l'application uniquement quand la page est complètement chargée. Donc, on remplace
-
-~~~ javascript
-
-    /*--- initialisation de la webapp ---*/
-    var myApp = new Workspace();
-
-    /*--- activation du monitoring des "hashchange events" et dispatch des routes ---*/
-    Backbone.history.start();
-~~~
-
-par
-
-~~~ javascript
-
-    $(function() {
-        /*--- initialisation de la webapp ---*/
-        var myApp = new Workspace();
-
-        /*--- activation du monitoring des "hashchange events" et dispatch des routes ---*/
-        Backbone.history.start();
-    });
-~~~
-
-###Model
-
-- C'est pas super propre d'initialiser les membres à null (ça ce discute)
-- Quitte à faire d'utiliser BackBone, utiliser la fonctionnalité de validation du Model (méthode `validate` du model)
-
-Donc :
-
-~~~ javascript
-
-    /*--- Model ---*/
-    var Client = Backbone.Model.extend({
-        defaults : {
-            id : null,
-            nom : null,
-            remarque : null
-        },
-
-        initialize : function() {
-            console.log("initialize client");
-        }
-    });
-~~~
-
-devient :
-
-~~~ javascript
-
-    /*--- Model ---*/
-    var Client = Backbone.Model.extend({
-        defaults : {
-            id : 'Identifiant du client',
-            nom: 'Nom du client',
-            remarque: 'Remarque sur le client'
-        },
-
-        validate: function(attrs) {
-            if(!attrs.id) return new Error('ID absent');
-            if(!attrs.nom) return new Error('Nom absent');
-            if(!attrs.remarque) return 'Remarque absente';
-        },
-
-        initialize : function() {
-            console.log("initialize client");
-        }
-    });
-~~~
-
-###View
-
-Alors, je le redis, c'est le concept de View, selon Backbone. Concernant la vue, gros changements, donc je vais laisser l'ancien code en commentaires pour bien montrer les différences :
-
-~~~ javascript
-
-    var ClientView = Backbone.View.extend({
-        el : $("#container"), /* Utilisation de zepto pour lier ClientView au DOM */
-        initialize : function() {
-            var that = this;
-            /*
-                - Création d'une collection de clients à l'initialisation de la vue.
-            */
-
-            /* --- ancienne version
-            this.listeClients = new ClientsCollection();
-            this.listeClients.bind("add", function(model){
-                that.addClientToList(model);
-            });
-            --- */
-
-            //Personnellement je préfère ma notation (ancienne version) , mais c'est au choix
-
-            this.listeClients = new ClientsCollection()
-                .bind("add", _.bind(this.addClientToList,this))
-                .bind("error", _.bind(this.error,this))
-
-            /*  Ajout : bonne pratique jQuery (ou Zepto)
-                pour éviter d'appeler plusieurs fois le sélecteur
-            */
-            this.listEl = this.$('ul');
-            this.about = this.$('.about').hide();
-            this.link = this.$('a');
-
-            /* Attention :
-                utiliser this.$() plutôt que $(), nous garantit
-                que les éléments appartiennent bien à "#container"
-            */
-
-
-
-        },
-        /*---  Définition des évènements associés à la vue ---*/
-        events : {
-            /*
-                lorsque le onclick() de <button id="cmdAddClient">Ajouter Client</button>
-                est déclenché alors appeler cmdAddClient_Click()
-            */
-
-            /* --- ancienne version
-            'click #cmdAddClient' : 'cmdAddClient_Click'
-            --- */
-
-            'submit form' : 'addClient'
-        },
-
-        /* Ajout : on récupère les valeurs saisies */
-        /* c'est plus joli, merci @mklabs pour le tips */
-        serialize : function serialize() {
-            return {
-                id: this.$('.identifiant').val(),
-                nom: this.$('.nom').val(),
-                remarque:   this.$('.remarque').val()
-            };
-        },
-
-        /* Ajout : on ajoute le client à la collection */
-        addClient : function(e) {
-            /*  on empeche le submit du formulaire classique,
-                l'appli js prend la main
-            */
-            e.preventDefault();
-
-            this.listeClients.add(this.serialize(), {
-                error : _.bind(this.error, this)
-            });
-
-        },
-
-        /* Suppression du code cmdAddClient_Click, ne sert plus à rien
-        cmdAddClient_Click : function(){
-            ...
-        },
-        */
-
-        /*---  addClientToList est appelée à chaque nouveau client inséré ---*/
-        addClientToList : function(model) {
-            /* utilisation de zepto pour ajouter un élément à la liste */
-
-            /* --- ancienne version
-            $("#listeClient").append("<li>" + model.get('id') + " : " + model.get('nom') + "</li>");
-            --- */
-             this.listEl.append("<li>" + model.get('id') + " : " + model.get('nom') + " - " + model.get('remarque') +"</li>");
-             return this;
-        },
-
-        /* Ajout de toggleAbout pour afficher/cacher le message "about"*/
-        toggleAbout : function() {
-            this.about.toggle();
-            this.link.attr('href',  this.about.css('display') === 'block' ? '#hideAbout' : '#showAbout');
-            return this;
-        },
-
-        /* Ajout de error */
-        error : function(model, error) {
-            console.log(model, error);
-            return this;
-        }
-    });
-~~~
-
-###Router
-
-Les derniers "petits" changements :
-
-~~~ javascript
-
-    var Workspace = Backbone.Router.extend({
-        initialize : function() {
-            /* Instancier la vue client */
-            this.clientView = new ClientView();
-
-            /* cacher le message "à propos" */
-            //$("#divAbout").hide();
-        },
-
-        routes: {
-            "" : "root",
-            "showAbout" : "toggleAbout",
-            "hideAbout" : "toggleAbout"
-        },
-
-        root : function() {
-            document.title = "Vous êtes à la racine ...";
-        },
-
-        toggleAbout: function () {
-            this.clientView.toggleAbout();
-        }
-
-        /* suppression du code showAbout, plus besoin
-        showAbout : function () {
-            console.log("show about ...");
-            $("#divAbout").show();
-            $("#lnkAbout").attr("href","#hideAbout");
-        },
-        */
-
-        /* suppression du code hideAbout, plus besoin
-        hideAbout : function () {
-            console.log("hide about ...");
-            $("#divAbout").hide();
-            $("#lnkAbout").attr("href","#showAbout");
-        }
-        */
-
-    });
-~~~
-
-Voilà, terminé (presque), vous pouvez lancer votre page, affichez la console, vous verrez que la méthode `validate` du model fonctionne si vous ne saisissez pas toutes les informations.
-
-##La @mklabs' touch
-
-On va juste mettre un peu de style pour faire joli, et @mklabs, il est très "html boilerplate", alors il m'a fait quelque chose de sympa et bien classe.
-
-Dans la balise `<head>`, rajoutez ceci :
-
-~~~ html
 
     <style>
         /*
@@ -631,6 +322,230 @@ Dans la balise `<head>`, rajoutez ceci :
         }
 
     </style>
-~~~
 
-*That's all folks*
+</head>
+<body>
+    <div id="container">
+        <a href="#showAbout" id="lnkAbout">about</a>
+        <form action="/">
+            <p>
+                <label for="identifiant">Identifiant</label>
+                <input type="text" id="identifiant" class="identifiant" name="identifiant" placeholder="Identifiant du client" />
+            </p>
+            <p>
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" class="nom" name="nom" placeholder="Nom du client" />
+            </p>
+
+            <p>
+                <label for="remarque">Remarque</label>
+                <input type="text" id="remarque" class="remarque" name="identifiant" placeholder="Remarque sur le client" />
+            </p>
+
+            <input type="submit" class="submit" value="Ajouter Client" />
+        </form>
+        <ul class="list"></ul>
+        <div class="about">Ceci est un tuto sur BackBone</div>
+    </div>
+
+</body>
+
+<script>
+    /*--- code applicatif ( à externaliser ensuite ) ---*/
+
+    (function($, exports){
+
+        /*--- Model ---*/
+        var Client = Backbone.Model.extend({
+            defaults : {
+                id : 'Identifiant du client',
+                nom: 'Nom du client',
+                remarque: 'Remarque sur le client'
+            },
+
+            validate: function(attrs) {
+                if(!attrs.id) return new Error('ID absent');
+                if(!attrs.nom) return new Error('Nom absent');
+                if(!attrs.remarque) return 'Remarque absente';
+            },
+
+            initialize : function() {
+                console.log("initialize client");
+            }
+        });
+
+        var ClientsCollection = Backbone.Collection.extend({
+            model : Client,
+            initialize : function() {
+                console.log("initialize clients collection");
+
+                this.bind("add", function(model){ console.log("Add", model.get('id'), model); });
+
+                this.bind("remove", function(el){ console.log("Remove", el.get('id'), el); });
+            }
+        });
+
+
+        var ClientView = Backbone.View.extend({
+            el : $("#container"), /* Utilisation de zepto pour lier ClientView au DOM */
+            initialize : function() {
+                var that = this;
+                /*
+                    - Création d'une collection de clients à l'initialisation de la vue.
+                */
+
+                /* --- ancienne version
+                this.listeClients = new ClientsCollection();
+                this.listeClients.bind("add", function(model){
+                    that.addClientToList(model);
+                });
+                --- */
+
+                //Personnellement je préfère ma notation (ancienne version) , mais c'est au choix
+
+                this.listeClients = new ClientsCollection()
+                    .bind("add", _.bind(this.addClientToList,this))
+                    .bind("error", _.bind(this.error,this))
+
+                /*  Ajout : bonne pratique jQuery (ou Zepto)
+                    pour éviter d'appeler plusieurs fois le sélecteur
+                */
+                this.listEl = this.$('ul');
+                this.about = this.$('.about').hide();
+                this.link = this.$('a');
+
+                /* Attention :
+                    utiliser this.$() plutôt que $(), nous garantit
+                    que les éléments appartiennent bien à "#container"
+                */
+
+
+
+            },
+            /*---  Définition des évènements associés à la vue ---*/
+            events : {
+                /*
+                    lorsque le onclick() de <button id="cmdAddClient">Ajouter Client</button>
+                    est déclenché alors appeler cmdAddClient_Click()
+                */
+
+                /* --- ancienne version
+                'click #cmdAddClient' : 'cmdAddClient_Click'
+                --- */
+
+                'submit form' : 'addClient'
+            },
+
+            /* Ajout : on récupère les valeurs saisies */
+            /* c'est plus joli, merci @mklabs pour le tips */
+            serialize : function serialize() {
+                return {
+                    id: this.$('.identifiant').val(),
+                    nom: this.$('.nom').val(),
+                    remarque:   this.$('.remarque').val()
+                };
+            },
+
+            /* Ajout : on ajoute le client à la collection */
+            addClient : function(e) {
+                /*  on empeche le submit du formulaire classique,
+                    l'appli js prend la main
+                */
+                e.preventDefault();
+
+                this.listeClients.add(this.serialize(), {
+                    error : _.bind(this.error, this)
+                });
+
+            },
+
+            /* Suppression du code cmdAddClient_Click, ne sert plus à rien
+            cmdAddClient_Click : function(){
+                ...
+            },
+            */
+
+            /*---  addClientToList est appelée à chaque nouveau client inséré ---*/
+            addClientToList : function(model) {
+                /* utilisation de zepto pour ajouter un élément à la liste */
+
+                /* --- ancienne version
+                $("#listeClient").append("<li>" + model.get('id') + " : " + model.get('nom') + "</li>");
+                --- */
+                 this.listEl.append("<li>" + model.get('id') + " : " + model.get('nom') + " - " + model.get('remarque') +"</li>");
+                 return this;
+            },
+
+            /* Ajout de toggleAbout pour afficher/cacher le message "about"*/
+            toggleAbout : function() {
+                this.about.toggle();
+                this.link.attr('href',  this.about.css('display') === 'block' ? '#hideAbout' : '#showAbout');
+                return this;
+            },
+
+            /* Ajout de error */
+            error : function(model, error) {
+                console.log(model, error);
+                return this;
+            }
+        });
+
+
+        var Workspace = Backbone.Router.extend({
+            initialize : function() {
+                /* Instancier la vue client */
+                this.clientView = new ClientView();
+
+                /* cacher le message "à propos" */
+                //$("#divAbout").hide();
+            },
+
+            routes: {
+                "" : "root",
+                "showAbout" : "toggleAbout",
+                "hideAbout" : "toggleAbout"
+            },
+
+            root : function() {
+                document.title = "Vous êtes à la racine ...";
+            },
+
+            toggleAbout: function () {
+                this.clientView.toggleAbout();
+            }
+
+            /* suppression du code showAbout, plus besoin
+            showAbout : function () {
+                console.log("show about ...");
+                $("#divAbout").show();
+                $("#lnkAbout").attr("href","#hideAbout");
+            },
+            */
+
+            /* suppression du code hideAbout, plus besoin
+            hideAbout : function () {
+                console.log("hide about ...");
+                $("#divAbout").hide();
+                $("#lnkAbout").attr("href","#showAbout");
+            }
+            */
+
+        });
+
+        $(function() {
+            /*--- initialisation de la webapp ---*/
+            var myApp = new Workspace();
+
+            /*--- activation du monitoring des "hashchange events" et dispatch des routes ---*/
+            Backbone.history.start();
+        });
+
+    })(this.Zepto, this);
+
+
+
+
+
+</script>
+
+</html>

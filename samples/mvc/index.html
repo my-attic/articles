@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC>
+<html>
+<head>
+    <title></title>
+    <script src="tinymvc.js"></script>
+</head>
+<body>
+        <form action="/">
+            <p>
+                <label for="identifiant">Identifiant</label>
+                <input type="text" id="identifiant" class="identifiant" name="identifiant" placeholder="Identifiant du client" />
+            </p>
+            <p>
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" class="nom" name="nom" placeholder="Nom du client" />
+            </p>
+
+            <p>
+                <label for="remarque">Remarque</label>
+                <input type="text" id="remarque" class="remarque" name="identifiant" placeholder="Remarque sur le client" />
+            </p>
+
+            <input type="submit" class="submit" value="Ajouter Client" />
+        </form>
+
+
+
+        <div id="my_view">
+            <button name="cmd01">cmd01</button>
+            <button name="cmd02">cmd02</button>
+            <button name="cmd03">cmd03</button>
+            <button id="cmd04">cmd04</button>
+
+            <ul class="list"></ul>
+
+        </div>
+</body>
+
+<script>
+
+
+
+    var Human = Model.extend({
+        kind : "Human",
+        firstName : "John",
+        lastName : "Doe",
+        town : "nowhere",
+        toString : function() { return this.firstName + ' ' + this.lastName + ' (' + this.town + ')'; }
+    });
+
+    var Bob = Human.getInstance({firstName:'Bob', lastName:'Morane', town : "Lyon"});
+    var Sam = Human.getInstance({id : "SAM_ID", firstName:'Sam', lastName:'Suffit', town : "Lyon"});
+    var Bill = Human.getInstance({firstName:'Bill', lastName:'Murray', town : "Paris"});
+    
+
+
+    var Humans = List.getInstance(Human);
+
+    Humans.add(Bob);
+    Humans.add([Bill, Sam]);
+
+    Humans.each(function(human) { console.log(human.firstName, human.lastName, human.town); });
+
+    console.log(Humans.filter(function(human) { return human.town === 'Lyon'; }));
+
+
+
+    /*--- Static ---*/
+    var HumanController = Controller.extend({
+
+        view : '#my_view',
+
+        events : {
+            '[name="cmd01"]' : ["click", function(){ console.log("Click CMD01"); }],
+            '[name="cmd02"]' : ["click", function(){ console.log("Click CMD02"); }],
+            '[name="cmd03"]' : ["click", function(){ HumanController.click.apply(this); }],
+            '#cmd04' : ["click", function(){ console.log("Click CMD04"); }]
+        },
+
+        hello : function() {console.log('hello');},
+
+        myUlList : $q('.list'),
+
+        populateList : function() {
+
+            Humans.each(function(human){
+                HumanController.myUlList.innerHTML += '<li>'+ human.toString() +'</li>'
+            });
+
+            $q('#my_view > * li').forEach(function(e) {
+                e.addEventListener('click',function(e) {
+                    console.log('click LI : ', e);
+                    console.log('click LI : ', e, e.srcElement.innerHTML);
+                },false);
+            });
+
+        },
+
+        click : function() { console.log("CLICK CLICK CLICK"); }
+
+
+    });
+
+
+    HumanController.populateList();
+
+
+
+    //pour le router cf blabla
+</script>
+
+
+</html>

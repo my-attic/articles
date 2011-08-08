@@ -7,7 +7,7 @@
 
 ##Initialisation de l'application :
 
-Avant toute chose, nous allons créer la structure de notre application. Il n'y a rien d'imposé. Libre à vous d'adapter en fonction de vos règles de développement. J'utilise **Zepto** pour les accès au DOM, mais vous pouvez tout aussi bien utiliser **jQuery**.
+Avant toute chose, nous allons créer la structure de notre application. Il n'y a rien d'imposé. Libre à vous d'adapter en fonction de vos règles de développement. J'utilise **Zepto** pour les accès au DOM, mais vous pouvez tout aussi bien utiliser **jQuery**.*(Dans cette 1ère partie, Zepto ou jQuery sont inutiles)*
 
 1. Créer un répertoire `myLittleBrain` pour votre application avec l'arborescence suivante (et fichiers)
 
@@ -182,8 +182,29 @@ Démonstration :
 
 ###Ecoute, Ecoute ...
 
+Il est possible de s'abonner aux changements effectués sur un modèle. Les modèles backbone ont une méthode `bind` que vous pouvez utiliser de la façon suivante : `doc.bind('change',function(){ console.log('doc has change : ', this.toJSON()); })`
 
+Démonstration :
 
+![Alt "bb_01_07.png"](https://github.com/k33g/articles/raw/master/res/bb_01_07.png)
+
+Vous pouvez aussi "écouter" les changements spécifiques à un attribut bien particulier : `doc.bind('change:text',function(){ console.log('text has change : ', this.get('text')); })`
+
+Démonstration :
+
+![Alt "bb_01_08.png"](https://github.com/k33g/articles/raw/master/res/bb_01_08.png)
+
+... Et vous pouvez remarquer que les "abonnements" se cumulent.
+
+**Remarque :** pour annuler un, des ou tous les abonnements, il faut utiliser la méthode `unbind()` :
+
+    object.unbind("change", onChange);  // Removes just the onChange callback.
+
+    object.unbind("change");            // Removes all "change" callbacks.
+
+    object.unbind();                    // Removes all callbacks on object.
+
+(cf. : [http://documentcloud.github.com/backbone/#Events-unbind](http://documentcloud.github.com/backbone/#Events-unbind)).
 
 
 ###Validation

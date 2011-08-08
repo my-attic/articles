@@ -281,7 +281,12 @@ Nous créons quelques modèles, une collection et nous ajoutons les modèles à 
 
     ![Alt "bb_01_12.png"](https://github.com/k33g/articles/raw/master/res/bb_01_12.png)
 
--
+- nous pouvons supprimer un ou plusieurs modèles de la collection avec la méthode `remove` : `docs.remove(d1)` ou `docs.remove([d2, d3])`(pour info, un évènement "remove" sera alors déclenché, et **oui** on peut "binder" les collections)
+- nous pouvons "interroger" la collection (grâce à la librairie **Underscore**) : par exemple : `each()` ou bien `filter()` :
+
+    ![Alt "bb_01_13.png"](https://github.com/k33g/articles/raw/master/res/bb_01_13.png)
+
+- et beaucoup d'autres choses que vous pouvez découvrir par là : [Collection Underscore Methods](http://documentcloud.github.com/backbone/#Collection-Underscore-Methods)
 
 
 ##Conclusion

@@ -8,6 +8,8 @@ Ce tutorial a pour objectif "d'attraper" **BackBone** par le bon bout. Cette 1è
 - la troisième partie traitera des vues et des templates
 - la quatrième ? je ne sais pas encore ... il y aura probalement même une 5ème (CouchDB ?)
 
+Pour cela nous allons créer une "cht'ite" webapp qui permettra de gérer "des bouts d'idées", en fait saisir un titre, un texte associé ainsi que des mots clés, tout les petites choses aux quelles on pense et en général on les oublie. Là, le principe, c'est de les sauvegarder quelque part. Si c'est pas de la spec ça ! Allez, on démarre le projet **My Little Brain**.
+
 
 ##Initialisation de l'application :
 

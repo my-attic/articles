@@ -2,7 +2,11 @@
 
 ##Introduction
 
-    //TODO: décrire le projet (specs), parler des prochaines "PARTS", ...
+Ce tutorial a pour objectif "d'attraper" **BackBone** par le bon bout. Cette 1ère partie traite des **Modèles** et des **Collections** dans le [framework MVC Backbone](http://documentcloud.github.com/backbone/). Plutôt que de tout traiter en un seul tutorial, cette fois ci je vais y aller composants par composants du framework afin que nous améliorions tous notre compréhension de Backbone (moi y compris en 1er), et ceci de manière progressive.
+
+- la deuxième partie traitera à nouveau des modèles et des collections mais à propos de leurs interactions avec du "local storage" et/ou un serveur distant
+- la troisième partie traitera des vues et des templates
+- la quatrième ? je ne sais pas encore ... il y aura probalement même une 5ème (CouchDB ?)
 
 
 ##Initialisation de l'application :

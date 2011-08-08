@@ -86,6 +86,8 @@ Pour instancier le modèle, il suffit d'écrire : `new Doc()`, est vous obtiendr
 
 *Remarque : la propriété `id` n'est pas obligatoire, mais elle nous servira par la suite.*
 
+*Autre remarque : j'ai "englobé" mon code dans une fonction anonyme pour éviter les problématiques de variables globales, et j'utilise `window.Doc` pour rendre `Doc` "disponible" (accessible) à l'extérieur de la fonction anonyme. Et `(function($) ... })(Zepto);` permet de définir que `$ = Zepto`.*
+
 
 ###Et maintenant, jouons avec
 
@@ -209,6 +211,35 @@ Démonstration :
 
 ###Validation
 
+Les modèles backbone permettent aussi de procéder à la validation des données en utilisant justement le système d'abonnement vu précédemment :
+
+1. Ajoutons une méthode `validate()` à notre modèle :
+
+        validate: function( attributes ){
+            if( attributes.title == '') {
+                return "Le titre du document ne peut pas être vide !!!";
+            }
+        },
+
+2. Mettons un abonnement à l'évènement `error` dans le constructeur du modèle :
+
+        initialize : function Doc() {
+            console.log('Doc Constructor');
+
+            this.bind("error", function(model, error){
+                console.log( error );
+            });
+
+        },
+
+Et, démonstration :
+
+![Alt "bb_01_09.png"](https://github.com/k33g/articles/raw/master/res/bb_01_09.png)
 
 ##Collections
 
+
+
+##Conclusion
+
+Là vous avez les bases pour écrire vos modèles et collections correctement (enfin j'espère) et commencer à apprendre à les utiliser. Mais nous n'avons vu qu'une partie des possibilités des modèles et des collections : la prochaine fois nous verrons comment les utiliser avec du "local storage" mais aussi comment les faire "communiquer" avec un serveur http pour obtenir des données (ou sauvegarder des données).

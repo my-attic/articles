@@ -1,4 +1,4 @@
-#Backbone : "Dans l'ordre" - Part I
+#Backbone : "Dans l'ordre" - Part I : "Modèles & Collections"
 
 ##Introduction
 
@@ -105,9 +105,88 @@ Forcément, vous ne voyez rien dans le navigateur, passez donc en mode console (
 
     Vous pouvez voir que la propriété `attributes` contient l'ensemble des propriétés avec les valeurs initialisées au moment du `new(...)`. Et si vous déroulez la "branche" `__proto__` de l'objet `d2`, vous voyez les valeurs par défaut. Vous pouvez aussi saisir dans la console, ceci `Doc.prototype.defaults` pour obtenir la liste des valeurs par défaut.
 
-###???
+###Jouons avec les attributs ... du modèle
 
-###Bind ?
+La "class" `Backbone.Model` fournit 2 méthodes pour lire et modifier les valeurs des attributs de l'instance :
+
+- `.get(attribute_name)`
+- `.set({ attribute_name, attribute_value})`
+
+Essayez en mode console : tapez `doc = new Doc({ id : '001', title : 'Mon 1er doc', text : 'Hello world', keywords : 'hello, world'})`, puis :
+
+![Alt "bb_01_03.png"](https://github.com/k33g/articles/raw/master/res/bb_01_03.png)
+
+**Remarque :** le modèle BackBone surcharge la méthode `toJSON()` de `Object` et permet d'exporter les attributs dans une chaîne JSON, ce qui est pratique pour la persistence, la sérialisation, "transfert" de données etc. ... :
+
+![Alt "bb_01_04.png"](https://github.com/k33g/articles/raw/master/res/bb_01_04.png)
+
+Et du coup vous pouvez auss écrire ceci : `autreDoc = new Doc(doc.toJSON())`
+
+![Alt "bb_01_05.png"](https://github.com/k33g/articles/raw/master/res/bb_01_05.png)
+
+
+###Ajoutons des méthodes au modèle
+
+Il est bien sûr possible de surcharger le modèle en luis ajoutons des méthodes. Si par exemple vous trouvez que le système de `.set({ attribute_name, attribute_value})` et `.get(attribute_name)` ne correspond pas à vos habitudes et que vous souhaitez quelque chose d'un peu plus "java-like", vous pouvez écrire votre modèle de cette façon :
+
+~~~ javascript
+
+    window.Doc = Backbone.Model.extend({
+
+        defaults : {
+            id : "???",
+            title : "Doc Title",
+            text : "Bla bla bla",
+            keywords : "word1, word2, word3, ..."
+        },
+
+        initialize : function Doc() {
+            console.log('Doc Constructor');
+        },
+
+        getId : function() {
+            return this.get('id');
+        },
+        setId : function(value) {
+            this.set({ id : value });
+        },
+
+        getTitle : function() {
+            return this.get('title');
+        },
+        setTitle : function(value) {
+            this.set({ title : value });
+        },
+
+        getText : function() {
+            return this.get('text');
+        },
+        setText : function(value) {
+            this.set({ text : value });
+        },
+
+        getKeywords : function() {
+            return this.get('keywords');
+        },
+        setKeywords : function(value) {
+            this.set({ keywords : value });
+        }
+
+    });
+
+~~~
+
+Démonstration :
+
+![Alt "bb_01_06.png"](https://github.com/k33g/articles/raw/master/res/bb_01_06.png)
+
+###Ecoute, Ecoute ...
+
+
+
+
+
+###Validation
 
 
 ##Collections

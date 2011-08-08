@@ -238,8 +238,54 @@ Et, démonstration :
 
 ##Collections
 
+Les "collections Backbone" sont (je cite) *un ensemble ordonné de modèles*. Nous allons rapidement voir dans ce paragraphe comment créer une collection et comment se servir de ses fonctionnalités de base.
+
+###1ère Collection
+
+Toujours dans `myLittleBrain.js`, nous allons créer notre collection `Docs`, par convention, le nom de la collection correspond au nom du modèle au pluriel. Une "collection BackBone" hérite de `Backbone.Collection` et est définie avec le mot clé `extend` de la manière suivante :
+
+~~~ javascript
+
+    (function($) {
+
+        /* ... */
+
+        window.Docs = Backbone.Collection.extend({
+            model : Doc,
+            initialize : function() {
+                console.log('Docs collection Constructor');
+            }
+        });
+
+    })(Zepto);
+
+~~~
+
+Vous pouvez préciser le modèle associé à la collection, en renseignant la propriété `model` (sinon vous serez obligé de le faire lors de l'instanciation de la collection.
+
+###Utilisons notre collection
+
+Nous créons quelques modèles, une collection et nous ajoutons les modèles à la collection :
+
+![Alt "bb_01_10.png"](https://github.com/k33g/articles/raw/master/res/bb_01_10.png)
+
+- Nous pouvons ajouter des éléments à la collections directement lors de son instantiation (optionnel) : `docs = new Docs().add([d1, d2])`
+- Nous pouvons ajouter un élément de manière unitaire `docs.add(d3)` ou plusieurs à la fois par le biais d'un tableau d'éléments : `docs.add([d1, d2])`
+- La collection possède une propriété `models` de type `Array` qui contient les éléments
+
+###Que pouvons nous faire d'autre ?
+
+- si le modèle a une propriété `id`, on peut le rechercher dans la collection par son `id` : dans notre exemple : `docs.get('002')` va nous retourner un "pointeur" sur `d2` :
+
+    ![Alt "bb_01_11.png"](https://github.com/k33g/articles/raw/master/res/bb_01_11.png)
+
+    ![Alt "bb_01_12.png"](https://github.com/k33g/articles/raw/master/res/bb_01_12.png)
+
+-
 
 
 ##Conclusion
 
 Là vous avez les bases pour écrire vos modèles et collections correctement (enfin j'espère) et commencer à apprendre à les utiliser. Mais nous n'avons vu qu'une partie des possibilités des modèles et des collections : la prochaine fois nous verrons comment les utiliser avec du "local storage" mais aussi comment les faire "communiquer" avec un serveur http pour obtenir des données (ou sauvegarder des données).
+
+Vous trouverez le code de cette 1ère partie, ici : [https://github.com/k33g/articles/tree/master/samples/backbone3/myLittleBrain-01](https://github.com/k33g/articles/tree/master/samples/backbone3/myLittleBrain-01).

@@ -57,8 +57,6 @@ Avant toute chose, nous allons créer la structure de notre application. Il n'y 
 
 ##Modèles
 
-    //TODO : définir le modèle (et aussi selon BackBone)
-
 ###1er Modèle
 
 Dans `myLittleBrain.js`, nous allons créer notre modèle `Doc`, par convention nous faisons commencer le nom du modèle par une majuscule, et le nom du modèle est au singulier. Un "modèle BackBone" hérite de `Backbone.Model` et est défini avec le mot clé `extend` de la manière suivante :

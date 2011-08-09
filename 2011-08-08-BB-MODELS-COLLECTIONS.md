@@ -124,7 +124,7 @@ Essayez en mode console : tapez `doc = new Doc({ id : '001', title : 'Mon 1er do
 
 ![Alt "bb_01_03.png"](https://github.com/k33g/articles/raw/master/res/bb_01_03.png)
 
-**Remarque :** le modèle BackBone surcharge la méthode `toJSON()` de `Object` et permet d'exporter les attributs dans une chaîne JSON, ce qui est pratique pour la persistence, la sérialisation, "transfert" de données etc. ... :
+**Remarque :** le modèle BackBone possède la méthode `toJSON()` qui permet d'exporter les attributs dans une chaîne JSON, ce qui est pratique pour la persistence, la sérialisation, "transfert" de données etc. ... :
 
 ![Alt "bb_01_04.png"](https://github.com/k33g/articles/raw/master/res/bb_01_04.png)
 
@@ -222,7 +222,7 @@ Les modèles backbone permettent aussi de procéder à la validation des donnée
 1. Ajoutons une méthode `validate()` à notre modèle :
 
         validate: function( attributes ){
-            if( attributes.title == '') {
+            if( attributes.title === '') {
                 return "Le titre du document ne peut pas être vide !!!";
             }
         },

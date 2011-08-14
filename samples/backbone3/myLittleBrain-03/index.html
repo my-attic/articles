@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC>
+<html>
+<head>
+    <title>My Little Brain</title>
+    <script src="js/vendor/zepto.min.js"></script>
+    <script src="js/vendor/underscore-min.js"></script>
+    <script src="js/vendor/tempo.min.js"></script>
+    <script src="js/vendor/backbone-min.js"></script>
+    <script src="js/vendor/backbone-localstorage.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+</head>
+<body>
+
+    <div id="doc-form-container">
+        <form action="/">
+            <p>
+                <input type="text" class="id" placeholder="Identifiant"/>
+            </p>
+            <p>
+                <input type="text" class="title" placeholder="Titre"/>
+            </p>
+            <p>
+                <input type="text" class="text" placeholder="Texte"/>
+            </p>
+            <p>
+                <input type="text" class="keywords" placeholder="Mots Clés"/>
+            </p>
+            <input type="submit" class="submit" value="Ajouter Document" />
+        </form>
+    </div>
+
+    <script type="text/template" id="doc-template">
+        <span><%= id %></span>
+        <span><%= title %></span>
+        <span><%= text %></span>
+        <span><%= keywords %></span>
+    </script>
+
+    <div id='doc-container'></div>
+
+    <script type="text/template" id="docs-collection-template">
+        <ol>
+          <% _.each(docs, function(doc) { %>
+            <li><%= doc.id %> : <%= doc.title %></li>
+          <% }); %>
+        </ol>
+    </script>
+
+
+    <ol id="documents-list">
+        <li data-template>{{id}} : {{title}} ({{text}})</li>
+    </ol>
+
+
+
+    <div id='docs-collection-container'></div>
+
+
+
+</body>
+<script src="js/myLittleBrain.js"></script>
+</html>

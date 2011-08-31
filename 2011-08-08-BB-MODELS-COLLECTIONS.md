@@ -116,7 +116,7 @@ Forcément, vous ne voyez rien dans le navigateur, passez donc en mode console (
 La "class" `Backbone.Model` fournit 2 méthodes pour lire et modifier les valeurs des attributs de l'instance :
 
 - `.get(attribute_name)`
-- `.set({ attribute_name, attribute_value})`
+- `.set({ attribute_name: attribute_value})`
 
 Essayez en mode console : tapez `doc = new Doc({ id : '001', title : 'Mon 1er doc', text : 'Hello world', keywords : 'hello, world'})`, puis :
 

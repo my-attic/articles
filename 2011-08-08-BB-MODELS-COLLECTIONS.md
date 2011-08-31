@@ -116,7 +116,7 @@ Forcément, vous ne voyez rien dans le navigateur, passez donc en mode console (
 La "class" `Backbone.Model` fournit 2 méthodes pour lire et modifier les valeurs des attributs de l'instance :
 
 - `.get(attribute_name)`
-- `.set({ attribute_name, attribute_value})`
+- `.set({ attribute_name: attribute_value})`
 
 Essayez en mode console : tapez `doc = new Doc({ id : '001', title : 'Mon 1er doc', text : 'Hello world', keywords : 'hello, world'})`, puis :
 
@@ -133,7 +133,7 @@ Et du coup vous pouvez auss écrire ceci : `autreDoc = new Doc(doc.toJSON())`
 
 ###Ajoutons des méthodes au modèle
 
-Il est bien sûr possible de surcharger le modèle en luis ajoutons des méthodes. Si par exemple vous trouvez que le système de `.set({ attribute_name, attribute_value})` et `.get(attribute_name)` ne correspond pas à vos habitudes et que vous souhaitez quelque chose d'un peu plus "java-like", vous pouvez écrire votre modèle de cette façon :
+Il est bien sûr possible de surcharger le modèle en luis ajoutons des méthodes. Si par exemple vous trouvez que le système de `.set({ attribute_name: attribute_value})` et `.get(attribute_name)` ne correspond pas à vos habitudes et que vous souhaitez quelque chose d'un peu plus "java-like", vous pouvez écrire votre modèle de cette façon :
 
 ~~~ javascript
 

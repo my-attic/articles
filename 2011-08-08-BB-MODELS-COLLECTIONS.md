@@ -133,7 +133,7 @@ Et du coup vous pouvez auss écrire ceci : `autreDoc = new Doc(doc.toJSON())`
 
 ###Ajoutons des méthodes au modèle
 
-Il est bien sûr possible de surcharger le modèle en luis ajoutons des méthodes. Si par exemple vous trouvez que le système de `.set({ attribute_name, attribute_value})` et `.get(attribute_name)` ne correspond pas à vos habitudes et que vous souhaitez quelque chose d'un peu plus "java-like", vous pouvez écrire votre modèle de cette façon :
+Il est bien sûr possible de surcharger le modèle en luis ajoutons des méthodes. Si par exemple vous trouvez que le système de `.set({ attribute_name: attribute_value})` et `.get(attribute_name)` ne correspond pas à vos habitudes et que vous souhaitez quelque chose d'un peu plus "java-like", vous pouvez écrire votre modèle de cette façon :
 
 ~~~ javascript
 

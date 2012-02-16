@@ -2,18 +2,18 @@
 
 ##Introduction
 
-Ce tutorial a pour objectif "d'attraper" **BackBone** par le bon bout. Cette 1ère partie traite des **Modèles** et des **Collections** dans le [framework MVC Backbone](http://documentcloud.github.com/backbone/). Plutôt que de tout traiter en un seul tutorial, cette fois ci je vais y aller composants par composants du framework afin que nous améliorions tous notre compréhension de Backbone (moi y compris en 1er), et ceci de manière progressive.
+Ce tutoriel a pour objectif "d'attraper" **BackBone** par le bon bout. Cette 1ère partie traite des **Modèles** et des **Collections** dans le [framework MVC Backbone](http://documentcloud.github.com/backbone/). Plutôt que de tout traiter en un seul tutoriel, cette fois ci je vais y aller composants par composants du framework afin que nous améliorions tous notre compréhension de Backbone (moi y compris en 1er), et ceci de manière progressive.
 
 - la deuxième partie traitera à nouveau des modèles et des collections mais à propos de leurs interactions avec du "local storage" et/ou un serveur distant
 - la troisième partie traitera des vues et des templates
 - la quatrième ? je ne sais pas encore ... il y aura probalement même une 5ème (CouchDB ?)
 
-Pour cela nous allons créer une "cht'ite" webapp qui permettra de gérer "des bouts d'idées", en fait saisir un titre, un texte associé ainsi que des mots clés, tout les petites choses aux quelles on pense et en général on les oublie. Là, le principe, c'est de les sauvegarder quelque part. Si c'est pas de la spec ça ! Allez, on démarre le projet **My Little Brain**.
+Pour cela nous allons créer une "cht'ite" webapp qui permettra de gérer "des bouts d'idées", en fait saisir un titre, un texte associé ainsi que des mots clés, toutes les petites choses aux quelles on pense et en général on les oublie. Là, le principe, c'est de les sauvegarder quelque part. Si c'est pas de la spec ça ! Allez, on démarre le projet **My Little Brain**.
 
 
 ##Initialisation de l'application :
 
-Avant toute chose, nous allons créer la structure de notre application. Il n'y a rien d'imposé. Libre à vous d'adapter en fonction de vos règles de développement. J'utilise **Zepto** pour les accès au DOM, mais vous pouvez tout aussi bien utiliser **jQuery**.*(Dans cette 1ère partie, Zepto ou jQuery sont inutiles)*
+Avant toute chose, nous allons créer la structure de notre application. Il n'y a rien d'imposé. Libre à vous d'adapter en fonction de vos règles de développement. J'utilise **Zepto** pour les accès au DOM, mais vous pouvez tout aussi bien utiliser **jQuery**. *(Dans cette 1ère partie, Zepto ou jQuery sont inutiles)*
 
 1. Créer un répertoire `myLittleBrain` pour votre application avec l'arborescence suivante (et fichiers)
 
@@ -84,7 +84,7 @@ Dans `myLittleBrain.js`, nous allons créer notre modèle `Doc`, par convention 
 
 ~~~
 
-La propriété `default` permet d'attribuer des valeurs par défaut aux instances du modèle (c'est optionnel). La méthode `initialize` est appelée lorsque que l'on instantie le modèle.
+La propriété `default` permet d'attribuer des valeurs par défaut aux instances du modèle (c'est optionnel). La méthode `initialize` est appelée lorsque que l'on instancie le modèle.
 
 Pour instancier le modèle, il suffit d'écrire : `new Doc()`, est vous obtiendrez un modèle avec des valeurs par défaut. Ou bien : `new Doc({ id : '001', title : 'Mon 1er doc', text : 'Hello world', keywords : 'hello, world'})`.
 
@@ -133,7 +133,7 @@ Et du coup vous pouvez auss écrire ceci : `autreDoc = new Doc(doc.toJSON())`
 
 ###Ajoutons des méthodes au modèle
 
-Il est bien sûr possible de surcharger le modèle en luis ajoutons des méthodes. Si par exemple vous trouvez que le système de `.set({ attribute_name: attribute_value})` et `.get(attribute_name)` ne correspond pas à vos habitudes et que vous souhaitez quelque chose d'un peu plus "java-like", vous pouvez écrire votre modèle de cette façon :
+Il est bien sûr possible de surcharger le modèle en lui ajoutant des méthodes. Si par exemple vous trouvez que le système de `.set({ attribute_name: attribute_value})` et `.get(attribute_name)` ne correspond pas à vos habitudes et que vous souhaitez quelque chose d'un peu plus "java-like", vous pouvez écrire votre modèle de cette façon :
 
 ~~~ javascript
 

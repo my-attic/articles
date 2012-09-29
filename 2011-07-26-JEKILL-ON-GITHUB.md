@@ -1,4 +1,4 @@
-#Jekill & GitHub
+#Jekyll & GitHub
 
 ##Introduction
 

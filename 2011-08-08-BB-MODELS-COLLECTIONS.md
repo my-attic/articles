@@ -84,7 +84,7 @@ Dans `myLittleBrain.js`, nous allons créer notre modèle `Doc`, par convention 
 
 ~~~
 
-La propriété `default` permet d'attribuer des valeurs par défaut aux instances du modèle (c'est optionnel). La méthode `initialize` est appelée lorsque que l'on instancie le modèle.
+La propriété `defaults` permet d'attribuer des valeurs par défaut aux instances du modèle (c'est optionnel). La méthode `initialize` est appelée lorsque que l'on instancie le modèle.
 
 Pour instancier le modèle, il suffit d'écrire : `new Doc()`, est vous obtiendrez un modèle avec des valeurs par défaut. Ou bien : `new Doc({ id : '001', title : 'Mon 1er doc', text : 'Hello world', keywords : 'hello, world'})`.
 
